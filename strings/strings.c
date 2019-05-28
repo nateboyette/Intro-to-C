@@ -9,7 +9,18 @@
 */
 int string_length(char *s)
 {
+    int count = 0;
 
+    for (int i = 0; i < *s; i++)
+    {
+        if (s[i] == '\0')
+        {
+            count = i;
+            break;
+        }
+    }
+
+    return count;
 }
 
 /*
@@ -20,7 +31,21 @@ int string_length(char *s)
 */
 char *reverse_string(char *rv, char *s)
 {
+    int strLength = string_length(s) - 1;
+    int rvIndex = 0;
+    for (int i = strLength; i >= 0; i--)
+    {
+        // printf("%c", s[i]);
+        rv[rvIndex] = s[i];
+        rvIndex++;
 
+        if (rvIndex > strLength)
+        {
+            rv[rvIndex] = '\0';
+        }
+    }
+
+    return rv;
 }
 
 #ifndef TESTING
@@ -37,4 +62,3 @@ int main(void)
     return 0;
 }
 #endif
-    
