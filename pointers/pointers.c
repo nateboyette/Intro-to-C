@@ -1,4 +1,21 @@
 #include <stdio.h>
+#include <ctype.h>
+
+int string_length(char *s)
+{
+    int count = 0;
+
+    for (int i = 0; i < *s; i++)
+    {
+        if (s[i] == '\0')
+        {
+            count = i;
+            break;
+        }
+    }
+
+    return count;
+}
 
 /*
     Given a character pointer x (that points to an array of chars), and a
@@ -15,7 +32,16 @@
 */
 void string_copy(char *x, char *y)
 {
+    int index = 0;
 
+    while (*y != '\0')
+    {
+        x[index] = *y;
+
+        y++;
+        index++;
+    }
+    x[index] = '\0';
 }
 
 /*
@@ -29,6 +55,19 @@ void string_copy(char *x, char *y)
 char *find_char(char *str, int c)
 {
 
+    // char *found;
+
+    while (*str != '\0')
+    {
+
+        if (*str == c)
+        {
+            return str;
+        }
+        str++;
+    }
+
+    return NULL;
 }
 
 /*
@@ -42,6 +81,32 @@ char *find_char(char *str, int c)
 char *find_string(char *haystack, char *needle)
 {
 
+    int needleLength = string_length(needle);
+
+    while (*haystack != '\0')
+    {
+
+        if (*haystack == needle[0])
+        {
+
+            char *startingIndex = haystack;
+
+            for (int i = 0; i < needleLength; i++)
+            {
+                if (startingIndex[i] != needle[i])
+                {
+                    return NULL;
+                }
+            }
+
+            // printf("%s\n", startingIndex);
+            return startingIndex;
+        }
+
+        haystack++;
+    }
+
+    return NULL;
 }
 
 #ifndef TESTING
