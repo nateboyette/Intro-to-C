@@ -55,8 +55,7 @@ void string_copy(char *x, char *y)
 char *find_char(char *str, int c)
 {
 
-    // char *found;
-
+    
     while (*str != '\0')
     {
 
